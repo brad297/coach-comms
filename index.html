@@ -243,6 +243,7 @@ let currentResult = null;
 
 // Use relative URL — works on any host
 const API_URL = '/api/chat';
+function getToken() { const parts = window.location.pathname.split('/'); return decodeURIComponent(parts[parts.length - 1] || ''); }
 
 window.onload = () => {
   try {
@@ -355,7 +356,7 @@ async function generateComm(overrideTone) {
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1500, system: buildSystemPrompt(), messages, _token: localStorage.getItem("fss_token") || "" })
+        body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1500, system: buildSystemPrompt(), messages, _token: getToken() })
       });
 
       const data = await response.json();
@@ -474,5 +475,4 @@ function showHistory(idx) {
 </body>
 </html>
 
- 
-  
+
