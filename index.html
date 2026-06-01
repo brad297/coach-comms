@@ -355,7 +355,7 @@ async function generateComm(overrideTone) {
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1500, system: buildSystemPrompt(), messages })
+        body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1500, system: buildSystemPrompt(), messages, _token: localStorage.getItem("fss_token") || "" })
       });
 
       const data = await response.json();
@@ -473,3 +473,6 @@ function showHistory(idx) {
 </script>
 </body>
 </html>
+
+ 
+  
